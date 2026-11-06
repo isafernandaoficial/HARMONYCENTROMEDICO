@@ -1,0 +1,712 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Clínica | Harmony Centro Médico</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #2A5483;
+            --dark-blue: #1A365D;
+            --accent-yellow: #F1C40F;
+            --bg-light: #F8F9FA;
+            --bg-white: #FFFFFF;
+            --text-dark: #2C3539;
+            --text-light: #F8F9FA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lato', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark-blue);
+        }
+
+        /* MENU */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 75px;
+            width: auto;
+            max-width: 280px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.02);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-yellow);
+        }
+
+        /* CABEÇALHO */
+
+        .page-header {
+            padding: 160px 5% 80px;
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .page-header h1 {
+            color: var(--bg-light);
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #E2E8F0;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        /* SOBRE A CLÍNICA */
+
+        .about-section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .about-content h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-yellow);
+            margin-top: 15px;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: #4A5568;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            background-color: #E2E8F0;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(42, 84, 131, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* MISSÃO, VISÃO E VALORES */
+
+        .pillars-section {
+            background-color: var(--bg-white);
+            padding: 100px 5%;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pillar-card {
+            background: var(--bg-light);
+            padding: 50px 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border-bottom: 5px solid transparent;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-10px);
+            background: var(--bg-white);
+            box-shadow: 0 15px 30px rgba(26, 54, 93, 0.1);
+            border-bottom: 5px solid var(--accent-yellow);
+        }
+
+        .pillar-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+        }
+
+        .pillar-card p {
+            font-size: 1rem;
+            color: #4A5568;
+        }
+
+        /* INFRAESTRUTURA */
+
+        .structure-section {
+            padding: 100px 5%;
+            background: var(--dark-blue);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .structure-section h2 {
+            color: var(--accent-yellow);
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .structure-section p {
+            font-size: 1.15rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #E2E8F0;
+        }
+
+        /* BOTÕES */
+
+        .btn-primary {
+            background-color: var(--accent-yellow);
+            color: var(--dark-blue);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--bg-white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* BOTÃO GOOGLE MAPS */
+
+        .btn-maps {
+            background-color: transparent;
+            color: var(--bg-white);
+            padding: 15px 40px;
+            border: 2px solid var(--bg-white);
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        .btn-maps:hover {
+            background-color: var(--accent-yellow);
+            border-color: var(--accent-yellow);
+            color: var(--dark-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-maps svg {
+            width: 21px;
+            height: 21px;
+            fill: currentColor;
+        }
+
+        .structure-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* RODAPÉ COMPACTO */
+
+        footer {
+            background: linear-gradient(145deg, #173451 0%, #1A365D 55%, #142D47 100%);
+            color: #ffffff;
+            padding: 24px 5% 14px;
+            font-family: 'Lato', sans-serif;
+            position: relative;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-yellow), transparent);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-info {
+            max-width: 400px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background: transparent;
+            padding: 0;
+            margin-bottom: 8px;
+            width: fit-content;
+        }
+
+        .footer-logo img {
+            display: block;
+            height: 58px;
+            width: auto;
+            max-width: 230px;
+            object-fit: contain;
+            background: transparent;
+            border: none;
+            filter: none;
+            mix-blend-mode: normal;
+        }
+
+        .footer-info p {
+            font-size: 0.82rem;
+            line-height: 1.45;
+            margin: 0;
+            color: #E2E8F0;
+        }
+
+        .footer-links-section h3 {
+            color: var(--accent-yellow);
+            font-family: 'Lato', sans-serif;
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .footer-links-grid {
+            display: flex;
+            gap: 45px;
+        }
+
+        .footer-links-grid ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links-grid li {
+            margin-bottom: 7px;
+        }
+
+        .footer-links-grid a {
+            color: #E2E8F0;
+            text-decoration: none;
+            font-size: 0.84rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links-grid a:hover {
+            color: var(--accent-yellow);
+        }
+
+        /* ANIMAÇÕES */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 900px) {
+            .about-section {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 350px;
+            }
+
+            .logo img {
+                height: 60px;
+            }
+
+            .footer-links-grid {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header {
+                padding-top: 130px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .footer-info {
+                max-width: 100%;
+            }
+
+            .footer-logo img {
+                height: 52px;
+                max-width: 220px;
+            }
+
+            .structure-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .structure-buttons {
+                flex-direction: column;
+                align-items: stretch;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .structure-buttons a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .footer-links-grid {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .footer-links-grid {
+                gap: 25px;
+            }
+
+            .page-header h1 {
+                font-size: 2.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MENU -->
+
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="logo HARMONY pn.png" alt="Harmony Centro Médico de Saúde e Estética">
+        </a>
+
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="sobre.html" style="color: var(--accent-yellow);">A Clínica</a>
+            <a href="procedimentos.html">Procedimentos</a>
+            <a href="equipe.html">Equipe</a>
+            <a href="contato.html">Contato</a>
+        </div>
+    </nav>
+
+    <!-- CABEÇALHO -->
+
+    <header class="page-header">
+        <h1>Conheça a Harmony</h1>
+        <p>
+            Um centro médico de excelência em Cabo Frio, desenhado para unir
+            ciência, tecnologia e arte em prol da sua saúde e autoestima.
+        </p>
+    </header>
+
+    <!-- NOSSA HISTÓRIA -->
+
+    <section class="about-section">
+        <div class="about-content reveal">
+            <h2>Nossa História</h2>
+
+            <p>
+                A Harmony Centro Médico de Saúde e Estética nasceu do propósito
+                de oferecer um atendimento médico e estético de altíssimo nível.
+                Comandada por profissionais apaixonados pelo que fazem, nossa
+                clínica foi planejada em cada detalhe para ser um ambiente
+                seguro, acolhedor e sofisticado.
+            </p>
+
+            <p>
+                Acreditamos que a verdadeira beleza é um reflexo da saúde em
+                equilíbrio. Por isso, aliamos a expertise cirúrgica do Dr.
+                Gerson aos protocolos avançados de recuperação e estética da
+                Dra. Silvana, proporcionando aos nossos pacientes uma jornada
+                de transformação completa e integrada.
+            </p>
+        </div>
+
+        <div class="about-image reveal">
+            <img src="recepcao.jpg" alt="Recepção da Clínica Harmony">
+        </div>
+    </section>
+
+    <!-- MISSÃO, VISÃO E VALORES -->
+
+    <section class="pillars-section">
+        <div class="grid-3">
+
+            <div class="pillar-card reveal">
+                <h3>Missão</h3>
+                <p>
+                    Promover saúde, bem-estar e elevação da autoestima através
+                    de procedimentos médicos e estéticos de excelência, com
+                    foco na segurança e na personalização do atendimento.
+                </p>
+            </div>
+
+            <div class="pillar-card reveal">
+                <h3>Visão</h3>
+                <p>
+                    Ser reconhecida como a clínica referência em cirurgia
+                    plástica e estética avançada na Região dos Lagos,
+                    destacando-se pela inovação tecnológica e resultados naturais.
+                </p>
+            </div>
+
+            <div class="pillar-card reveal">
+                <h3>Valores</h3>
+                <p>
+                    Ética médica rigorosa, transparência em todas as etapas,
+                    acolhimento humanizado, busca constante por atualização
+                    científica e respeito absoluto ao paciente.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INFRAESTRUTURA -->
+
+    <section class="structure-section reveal">
+        <h2>Infraestrutura de Alto Padrão</h2>
+
+        <p>
+            Equipamentos de última geração e instalações modernas preparadas
+            para o seu conforto e segurança, desde a primeira consulta até o
+            acompanhamento pós-operatório.
+        </p>
+
+        <div class="structure-buttons">
+
+            <a
+                href="https://api.whatsapp.com/send/?phone=22988052565&text=Ol%C3%A1%2C+gostaria+de+agendar+uma+visita+para+conhecer+a+Harmony%21&type=phone_number&app_absent=0&utm_source=ig"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary"
+            >
+                Agende sua Visita pelo WhatsApp
+            </a>
+
+            <a
+                href="https://share.google/iNdIznWOss2fBfQwY"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-maps"
+                aria-label="Traçar rota até a Harmony no Google Maps"
+            >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/>
+                </svg>
+                COMO CHEGAR
+            </a>
+
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+
+    <footer>
+        <div class="footer-container">
+
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <img
+                        src="logo HARMONY pn.png"
+                        alt="Harmony Clínica de Saúde e Estética"
+                    >
+                </div>
+
+                <p>
+                    Harmony Clínica de Saúde e Estética<br>
+                    Registro: 113826-0/RJ<br>
+                    Diretor Técnico-Médico: Dr. Gerson<br>
+                    CRM-RJ: 52-59073-8 | RQE: 16749
+                </p>
+            </div>
+
+            <div class="footer-links-section">
+                <h3>Links úteis</h3>
+
+                <div class="footer-links-grid">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="sobre.html">A Clínica</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+
+                    <ul>
+                        <li><a href="#">Agenda</a></li>
+                        <li><a href="#">Consultas</a></li>
+                        <li><a href="procedimentos.html">Procedimentos</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT: ANIMAÇÕES -->
+
+    <script>
+        function revealOnScroll() {
+            var reveals = document.querySelectorAll('.reveal');
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+    </script>
+
+</body>
+</html>
